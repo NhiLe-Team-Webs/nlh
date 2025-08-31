@@ -18,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,16 +55,27 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				hero: {
+					bg: 'hsl(var(--hero-bg))'
+				},
+				about: {
+					bg: 'hsl(var(--about-bg))'
+				},
+				founder: {
+					bg: 'hsl(var(--founder-bg))'
+				},
+				ecosystem: {
+					bg: 'hsl(var(--ecosystem-bg))'
+				},
+				companies: {
+					bg: 'hsl(var(--companies-bg))'
+				},
+				contact: {
+					bg: 'hsl(var(--contact-bg))'
+				},
+				footer: {
+					bg: 'hsl(var(--footer-bg))'
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +98,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				blob: {
+					'0%': {
+						transform: 'translate(0px, 0px) scale(1)'
+					},
+					'33%': {
+						transform: 'translate(30px, -50px) scale(1.1)'
+					},
+					'66%': {
+						transform: 'translate(-20px, 20px) scale(0.9)'
+					},
+					'100%': {
+						transform: 'translate(0px, 0px) scale(1)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'blob': 'blob 7s infinite'
 			}
 		}
 	},
