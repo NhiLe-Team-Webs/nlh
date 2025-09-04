@@ -18,14 +18,14 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-about-bg">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center scroll-reveal">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Hành Trình Của Chúng Tôi</h2>
-          <p className="text-3xl md:text-5xl font-bold text-foreground mb-12">Từ một giấc mơ, đến một di sản.</p>
+    <section id="about" className="section-spacing bg-about-bg">
+      <div className="container mx-auto container-spacing">
+        <div className="max-w-5xl mx-auto text-center scroll-reveal-fade">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary heading-spacing scroll-reveal-left stagger-1">Hành Trình Của Chúng Tôi</h2>
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2">Từ một giấc mơ, đến một di sản.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto text-muted-foreground space-y-6 text-lg leading-relaxed scroll-reveal">
+        <div className="max-w-5xl mx-auto text-muted-foreground content-spacing text-lg lg:text-xl leading-relaxed scroll-reveal-scale stagger-3">
           <p>
             Chúng tôi tin trong trái tim mỗi người Việt Nam luôn chứa đựng niềm tin vào sức mạnh của lòng nhân ái và tri thức. 
             Từ một ý tưởng nhỏ, <span className="text-foreground font-semibold">Nhi Le</span> đã biến ước mơ thành hiện thực qua việc thành lập{' '}
@@ -38,15 +38,17 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-20 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 card-grid-spacing max-w-6xl mx-auto mt-16 lg:mt-20 text-center">
           {values.map((value, index) => (
             <div 
               key={index}
-              className="p-8 glassmorphism rounded-2xl scroll-reveal"
+              className={`card-spacing glassmorphism rounded-2xl scroll-reveal hover-card group cursor-pointer stagger-${index + 1}`}
               style={{ transitionDelay: value.delay }}
             >
-              <h3 className="text-2xl font-bold text-primary mb-2">{value.title}</h3>
-              <p className="text-muted-foreground">{value.description}</p>
+              <div className="hover-bounce">
+                <h3 className="text-2xl lg:text-3xl font-bold text-primary heading-spacing group-hover:text-primary/80 transition-colors duration-300">{value.title}</h3>
+              </div>
+              <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed">{value.description}</p>
             </div>
           ))}
         </div>
