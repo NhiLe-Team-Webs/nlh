@@ -1,12 +1,12 @@
-import { ArrowDown, ArrowLeftCircle } from 'lucide-react';
+import { ArrowDown, ArrowDownCircle } from 'lucide-react';
 
 const Ecosystem = () => {
   return (
     <section id="ecosystem" className="section-spacing bg-ecosystem-bg">
       <div className="container mx-auto container-spacing text-center">
         <div className="max-w-5xl mx-auto scroll-reveal-fade">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-primary heading-spacing scroll-reveal-left stagger-1">Mô Hình Hoạt Động</h2>
-          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2">Hệ sinh thái kiến tạo giá trị.</p>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary heading-spacing scroll-reveal-left stagger-1 vietnamese-text">Mô Hình Hoạt Động</h2>
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2 heading-vietnamese">Hệ sinh thái kiến tạo giá trị.</p>
         </div>
 
         <div className="flex flex-col items-center content-spacing max-w-6xl mx-auto scroll-reveal-scale stagger-3">
@@ -28,8 +28,8 @@ const Ecosystem = () => {
             </p>
           </div>
           
-          <div className="text-primary transform -rotate-90 hover-bounce">
-            <ArrowLeftCircle className="w-14 h-14 hover:scale-110 transition-transform duration-300" />
+          <div className="text-primary hover-bounce">
+            <ArrowDownCircle className="w-14 h-14 hover:scale-110 transition-transform duration-300" />
           </div>
 
           {/* The Cycle */}
