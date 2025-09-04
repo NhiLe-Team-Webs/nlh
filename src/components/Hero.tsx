@@ -15,42 +15,37 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const scrollElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate, .scroll-reveal-fade');
-    
-    const elementInView = (el: Element, dividend = 1) => {
-      const elementTop = el.getBoundingClientRect().top;
-      const elementHeight = el.getBoundingClientRect().height;
-      return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend && elementTop + elementHeight > 0;
-    };
+    const targets = document.querySelectorAll(
+      '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate, .scroll-reveal-fade'
+    );
 
-    const displayScrollElement = (element: Element) => {
-      element.classList.add('is-visible');
-    };
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: reveal immediately
+      targets.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
 
-    const handleScrollAnimation = () => {
-      scrollElements.forEach((el) => {
-        if (elementInView(el, 1.25)) {
-          displayScrollElement(el);
-        }
-      });
-    };
-
-    // Throttle scroll event for better performance
-    let ticking = false;
-    const throttledScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScrollAnimation();
-          ticking = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          } else {
+            // Remove when out of view so it can animate again next time
+            entry.target.classList.remove('is-visible');
+          }
         });
-        ticking = true;
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.15,
       }
-    };
+    );
 
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-    handleScrollAnimation();
+    targets.forEach((el) => observer.observe(el));
 
-    return () => window.removeEventListener('scroll', throttledScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -62,17 +57,17 @@ const Hero = () => {
       </div>
       <div className="z-20 container-spacing">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight heading-spacing scroll-reveal-fade">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight heading-spacing scroll-reveal-fade heading-vietnamese">
             <span className="inline-block scroll-reveal-left stagger-1">Kiến Tạo Di Sản.</span><br />
             <span className="gradient-text inline-block scroll-reveal-right stagger-2">Vững Xây Tương Lai.</span>
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-muted-foreground text-spacing scroll-reveal-scale stagger-3 leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-muted-foreground text-spacing scroll-reveal-scale stagger-3 leading-relaxed body-vietnamese">
             NhiLe Holding đầu tư vào các doanh nghiệp mang giá trị cốt lõi Tâm - Tầm - Đức, dùng lợi nhuận để phục vụ sứ mệnh phát triển con người và cộng đồng.
           </p>
           <div className="scroll-reveal-rotate stagger-4">
             <button 
               onClick={() => scrollToSection('ecosystem')}
-              className="bg-primary text-primary-foreground font-semibold px-8 py-4 lg:px-10 lg:py-5 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 active:scale-95 hover-shimmer relative overflow-hidden group text-lg"
+              className="bg-primary text-primary-foreground font-semibold px-8 py-4 lg:px-10 lg:py-5 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 active:scale-95 hover-shimmer relative overflow-hidden group text-lg vietnamese-text"
             >
               <span className="relative z-10">Khám Phá Hệ Sinh Thái</span>
             </button>

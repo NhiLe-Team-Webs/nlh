@@ -21,16 +21,16 @@ const About = () => {
     <section id="about" className="section-spacing bg-about-bg">
       <div className="container mx-auto container-spacing">
         <div className="max-w-5xl mx-auto text-center scroll-reveal-fade">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-primary heading-spacing scroll-reveal-left stagger-1">Hành Trình Của Chúng Tôi</h2>
-          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2">Từ một giấc mơ, đến một di sản.</p>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary heading-spacing scroll-reveal-left stagger-1 vietnamese-text">Hành Trình Của Chúng Tôi</h2>
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2 heading-vietnamese">Từ một giấc mơ, đến một di sản.</p>
         </div>
 
-        <div className="max-w-5xl mx-auto text-muted-foreground content-spacing text-lg lg:text-xl leading-relaxed scroll-reveal-scale stagger-3">
+        <div className="max-w-5xl mx-auto text-muted-foreground content-spacing text-lg lg:text-xl leading-relaxed scroll-reveal-scale stagger-3 body-vietnamese">
           <p>
             Chúng tôi tin trong trái tim mỗi người Việt Nam luôn chứa đựng niềm tin vào sức mạnh của lòng nhân ái và tri thức. 
-            Từ một ý tưởng nhỏ, <span className="text-foreground font-semibold">Nhi Le</span> đã biến ước mơ thành hiện thực qua việc thành lập{' '}
-            <span className="text-foreground font-semibold">NhiLe Team</span> – tiền thân của{' '}
-            <span className="text-foreground font-semibold">NhiLe Foundation</span> ngày nay.
+            Từ một ý tưởng nhỏ, <span className="text-foreground font-semibold accent-vietnamese">Nhi Le</span> đã biến ước mơ thành hiện thực qua việc thành lập{' '}
+            <span className="text-foreground font-semibold accent-vietnamese">NhiLe Team</span> – tiền thân của{' '}
+            <span className="text-foreground font-semibold accent-vietnamese">NhiLe Foundation</span> ngày nay.
           </p>
           <p>
             Từ 3 người tiên phong, cộng đồng đã lớn mạnh với hơn 300 thành viên cốt cán và 5000 thành viên tích cực, 
@@ -46,9 +46,9 @@ const About = () => {
               style={{ transitionDelay: value.delay }}
             >
               <div className="hover-bounce">
-                <h3 className="text-2xl lg:text-3xl font-bold text-primary heading-spacing group-hover:text-primary/80 transition-colors duration-300">{value.title}</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold text-primary heading-spacing group-hover:text-primary/80 transition-colors duration-300 heading-vietnamese">{value.title}</h3>
               </div>
-              <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed">{value.description}</p>
+              <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed body-vietnamese">{value.description}</p>
             </div>
           ))}
         </div>
