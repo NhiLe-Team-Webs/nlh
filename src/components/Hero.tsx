@@ -4,16 +4,23 @@ const Hero = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80; // Account for fixed header
+      const elementPosition = element.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   useEffect(() => {
-    const scrollElements = document.querySelectorAll('.scroll-reveal');
+    const scrollElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate, .scroll-reveal-fade');
     
     const elementInView = (el: Element, dividend = 1) => {
       const elementTop = el.getBoundingClientRect().top;
-      return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
+      const elementHeight = el.getBoundingClientRect().height;
+      return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend && elementTop + elementHeight > 0;
     };
 
     const displayScrollElement = (element: Element) => {
@@ -28,10 +35,22 @@ const Hero = () => {
       });
     };
 
-    window.addEventListener('scroll', handleScrollAnimation);
+    // Throttle scroll event for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScrollAnimation();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     handleScrollAnimation();
 
-    return () => window.removeEventListener('scroll', handleScrollAnimation);
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
 
   return (
@@ -41,21 +60,23 @@ const Hero = () => {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-3xl opacity-100 animate-blob"></div>
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-foreground/10 rounded-full mix-blend-screen filter blur-3xl opacity-100 animate-blob animation-delay-2000"></div>
       </div>
-      <div className="z-20 p-6">
-        <h1 className="text-4xl md:text-7xl font-extrabold text-foreground leading-tight mb-4 scroll-reveal">
-          Kiến Tạo Di Sản.<br />
-          <span className="gradient-text">Vững Xây Tương Lai.</span>
-        </h1>
-        <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground mb-8 scroll-reveal" style={{ transitionDelay: '200ms' }}>
-          NhiLe Holding đầu tư vào các doanh nghiệp mang giá trị cốt lõi Tâm - Tầm - Đức, dùng lợi nhuận để phục vụ sứ mệnh phát triển con người và cộng đồng.
-        </p>
-        <div className="scroll-reveal" style={{ transitionDelay: '400ms' }}>
-          <button 
-            onClick={() => scrollToSection('ecosystem')}
-            className="bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-opacity transform hover:scale-105"
-          >
-            Khám Phá Hệ Sinh Thái
-          </button>
+      <div className="z-20 container-spacing">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight heading-spacing scroll-reveal-fade">
+            <span className="inline-block scroll-reveal-left stagger-1">Kiến Tạo Di Sản.</span><br />
+            <span className="gradient-text inline-block scroll-reveal-right stagger-2">Vững Xây Tương Lai.</span>
+          </h1>
+          <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-muted-foreground text-spacing scroll-reveal-scale stagger-3 leading-relaxed">
+            NhiLe Holding đầu tư vào các doanh nghiệp mang giá trị cốt lõi Tâm - Tầm - Đức, dùng lợi nhuận để phục vụ sứ mệnh phát triển con người và cộng đồng.
+          </p>
+          <div className="scroll-reveal-rotate stagger-4">
+            <button 
+              onClick={() => scrollToSection('ecosystem')}
+              className="bg-primary text-primary-foreground font-semibold px-8 py-4 lg:px-10 lg:py-5 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 active:scale-95 hover-shimmer relative overflow-hidden group text-lg"
+            >
+              <span className="relative z-10">Khám Phá Hệ Sinh Thái</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
