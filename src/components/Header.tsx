@@ -1,3 +1,4 @@
+import ContactModal from "./ContactModal";
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -53,9 +54,9 @@ const Header = () => {
           <button onClick={() => scrollToSection('companies')} className="text-muted-foreground hover:text-foreground hover-underline transition-all duration-300 py-2 px-3 rounded-md hover:bg-accent/50 vietnamese-text">
             Các công ty
           </button>
-          <button onClick={() => scrollToSection('contact')} className="bg-foreground text-background px-6 py-2 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-foreground/25 transition-all duration-300 active:scale-95 vietnamese-text">
+          <ContactModal trigger={<button onClick={() => scrollToSection('contact')} className="bg-foreground text-background px-6 py-2 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-foreground/25 transition-all duration-300 active:scale-95 vietnamese-text">
             Liên hệ
-          </button>
+          </button>} />
         </div>
         
         <button 
