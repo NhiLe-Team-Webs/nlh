@@ -1,6 +1,6 @@
 import React from "react"
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogClose } from "./ui/dialog"
-import ContactForm from "./ContactForm"
+import ContactForm from "@/components/contactform"
 import emailjs from "@emailjs/browser"
 
 export default function ContactModal({ trigger }: { trigger: React.ReactNode }) {
