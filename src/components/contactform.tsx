@@ -108,7 +108,9 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
             </FormItem>
           )}
         />
-        <Button type="submit">Gửi</Button>
+        <Button type="submit" className="w-full bg-red-500 text-white hover:bg-red-600">
+          Gửi
+        </Button>
       </form>
     </Form>
   )
