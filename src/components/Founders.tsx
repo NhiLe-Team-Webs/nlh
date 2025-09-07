@@ -17,7 +17,7 @@ const Founders = () => {
           <div className="w-72 h-72 lg:w-80 lg:h-80 scroll-reveal-scale stagger-3 flex-shrink-0 hover-image group">
             <div className="relative overflow-hidden rounded-full border-4 border-border shadow-lg group-hover:shadow-2xl group-hover:shadow-primary/20 transition-all duration-500">
               <img 
-                src= "/public/NhiLe.jpg"
+                src= "/NhiLe.jpg"
                 alt="Nhi Le - Founder of NhiLe Holding" 
                 className="rounded-full object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
               />
