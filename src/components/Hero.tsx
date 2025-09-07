@@ -58,11 +58,11 @@ const Hero = () => {
       <div className="z-20 container-spacing">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight heading-spacing scroll-reveal-fade heading-vietnamese">
-            <span className="inline-block scroll-reveal-left stagger-1">Kiến Tạo Di Sản.</span><br />
-            <span className="gradient-text inline-block scroll-reveal-right stagger-2">Vững Xây Tương Lai.</span>
+            <span className="inline-block scroll-reveal-left stagger-1">Nhi Le Holding:</span><br />
+            <span className="gradient-text inline-block scroll-reveal-right stagger-2"> We build to give back</span>
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-muted-foreground text-spacing scroll-reveal-scale stagger-3 leading-relaxed body-vietnamese">
-            NhiLe Holding đầu tư vào các doanh nghiệp mang giá trị cốt lõi Tâm - Tầm - Đức, dùng lợi nhuận để phục vụ sứ mệnh phát triển con người và cộng đồng.
+          Được thành lập với tầm nhìn trở thành hệ sinh thái đa ngành với giá trị cốt lõi Tâm - Tầm - Đức. Với mục tiêu kiến tạo những giá trị bền vững cho cộng đồng và xã hội.
           </p>
           <div className="scroll-reveal-rotate stagger-4">
             <button 
