@@ -32,7 +32,7 @@ const Companies = () => {
       description: "S&W Homes for More tập trung vào việc thiết kế và xây dựng không gian sống hiện đại, tiện nghi và bền vững, đáp ứng nhu cầu ngày càng cao của cộng đồng.",
       initial: "NK",
       bgColor: "bg-green-500",
-      logo: "/SWHomesForMore.jpg"
+      logo: "/S&W share and work.jpg"
     },
     {
       name: "Nhi's House – Nơi kết nối cộng đồng",
