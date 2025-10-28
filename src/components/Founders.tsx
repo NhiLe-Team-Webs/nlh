@@ -1,40 +1,43 @@
-import founderImage from '@/assets/nhi-le-founder.jpg';
+import { useTranslation } from "@/contexts/LanguageContext";
 
 const Founders = () => {
+  const translation = useTranslation();
+  const { founders } = translation;
+
   return (
     <section id="founders" className="section-spacing bg-founder-bg">
-      <div className="container mx-auto container-spacing">
-        <div className="max-w-5xl mx-auto text-center scroll-reveal-fade">
-          <p className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground text-spacing scroll-reveal-right stagger-2 heading-vietnamese">
-            Nhi Le - Hành Trình Của Đam Mê Và Tầm Nhìn
+      <div className="container-spacing container mx-auto">
+        <div className="scroll-reveal-fade mx-auto max-w-5xl text-center">
+          <p className="heading-spacing heading-vietnamese scroll-reveal-right stagger-2 text-3xl font-bold text-foreground md:text-5xl lg:text-6xl">
+            {founders.heading}
           </p>
-          <p className="text-base md:text-lg lg:text-xl font-semibold text-red-500 scroll-reveal-left stagger-3 vietnamese-text mb-8">
-            " Tôi không tin vào con đường thành công ngắn hạn. Tôi tin vào hành trình dài hạn – nơi văn hóa, tri thức và con người mới là di sản thật sự. "
+          <p className="vietnamese-text mb-8 text-base font-semibold text-red-500 scroll-reveal-left stagger-3 md:text-lg lg:text-xl">
+            {founders.quote}
           </p>
         </div>
-        
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto">
-          <div className="w-72 h-72 lg:w-80 lg:h-80 scroll-reveal-scale stagger-3 flex-shrink-0 hover-image group">
-            <div className="relative overflow-hidden rounded-full border-4 border-border shadow-lg group-hover:shadow-2xl group-hover:shadow-primary/20 transition-all duration-500">
-              <img 
-                src= "/NhiLe.jpg"
-                alt="Nhi Le - Founder of NhiLe Holding" 
-                className="rounded-full object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-12 lg:flex-row lg:gap-16">
+          <div className="hover-image group stagger-3 flex-shrink-0 scroll-reveal-scale">
+            <div className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-border shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary/20 lg:h-80 lg:w-80">
+              <img
+                src="/NhiLe.jpg"
+                alt="Nhi Le - Founder of NhiLe Holding"
+                className="h-full w-full rounded-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
           </div>
-          
-          <div className="lg:w-2/3 text-center lg:text-left scroll-reveal-left stagger-4">
+
+          <div className="stagger-4 scroll-reveal-left text-center lg:w-2/3 lg:text-left">
             <div className="content-spacing">
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Nhi Lê là một doanh nhân, nhà giáo dục, và người sáng lập nhiều dự án văn hóa, giáo dục tại Việt Nam, hiện đang định cư tại Singapore. Cô là người mẹ đơn thân và đã từng trải qua những khó khăn trong cuộc sống, nhưng chọn cách học hỏi, chia sẻ, và phát triển từ chính những khó khăn đó. Cô đã xây dựng cộng đồng học tập hàng chục nghìn người thông qua kênh YouTube của mình và sáng lập NhiLe Foundation – một quỹ ESG hoạt động minh bạch, hỗ trợ trẻ em Việt Nam thông qua đóng góp từ cộng đồng học tập và lợi nhuận doanh nghiệp.
+              <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+                {founders.body}
               </p>
-              <blockquote className="border-l-4 border-primary pl-6 italic text-muted-foreground hover:text-foreground hover:border-primary/80 transition-all duration-300 hover:bg-accent/10 p-6 rounded-r-lg hover-lift scroll-reveal-scale stagger-6 text-lg lg:text-xl body-vietnamese">
-                “ Chúng tôi không chỉ xây dựng doanh nghiệp, mà tạo ra nền tảng vững chắc, lôi kéo niềm tin và sức mạnh của cộng đồng để tạo ra cơ hội cho trẻ em và xây dựng thế hệ tương lai.   ”
+              <blockquote className="body-vietnamese hover-lift scroll-reveal-scale stagger-6 rounded-r-lg border-l-4 border-primary p-6 pl-6 text-lg italic text-muted-foreground transition-all duration-300 hover:bg-accent/10 hover:text-foreground hover:border-primary/80 lg:text-xl">
+                {founders.blockquote}
               </blockquote>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
     </section>
   );

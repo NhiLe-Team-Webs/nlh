@@ -1,27 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import { useLanguage, useTranslation } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const translation = useTranslation();
+  const { hero } = translation;
+  const { language } = useLanguage();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header
+      const headerHeight = 80;
       const elementPosition = element.offsetTop - headerHeight;
-      
+
       window.scrollTo({
         top: elementPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   useEffect(() => {
     const targets = document.querySelectorAll(
-      '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate, .scroll-reveal-fade'
+      ".scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate, .scroll-reveal-fade",
     );
 
-    if (!('IntersectionObserver' in window)) {
-      // Fallback: reveal immediately
-      targets.forEach((el) => el.classList.add('is-visible'));
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((el) => el.classList.add("is-visible"));
       return;
     }
 
@@ -29,47 +33,51 @@ const Hero = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            entry.target.classList.add("is-visible");
           } else {
-            // Remove when out of view so it can animate again next time
-            entry.target.classList.remove('is-visible');
+            entry.target.classList.remove("is-visible");
           }
         });
       },
       {
         root: null,
-        rootMargin: '0px 0px -10% 0px',
+        rootMargin: "0px 0px -10% 0px",
         threshold: 0.15,
-      }
+      },
     );
 
     targets.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [language]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center text-center bg-hero-bg relative overflow-hidden">
-      <div className="absolute inset-0 bg-hero-bg opacity-50 z-10"></div>
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-hero-bg text-center">
+      <div className="absolute inset-0 z-10 bg-hero-bg opacity-50" />
       <div className="absolute inset-0 -z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-3xl opacity-100 animate-blob"></div>
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-foreground/10 rounded-full mix-blend-screen filter blur-3xl opacity-100 animate-blob animation-delay-2000"></div>
+        <div className="animate-blob absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/20 opacity-100 mix-blend-screen blur-3xl" />
+        <div className="animate-blob animation-delay-2000 absolute right-1/4 top-1/4 h-96 w-96 rounded-full bg-foreground/10 opacity-100 mix-blend-screen blur-3xl" />
       </div>
-      <div className="z-20 container-spacing">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight heading-spacing scroll-reveal-fade heading-vietnamese">
-            <span className="inline-block scroll-reveal-left stagger-1">Nhi Le Holding:</span><br />
-            <span className="gradient-text inline-block scroll-reveal-right stagger-2"> We build to give back</span>
+      <div className="container-spacing z-20">
+        <div className="mx-auto max-w-6xl text-center">
+          <h1 className="heading-spacing heading-vietnamese text-4xl font-extrabold leading-tight text-foreground scroll-reveal-fade md:text-6xl lg:text-7xl">
+            <span className="inline-block scroll-reveal-left stagger-1">
+              {hero.titleLine}
+            </span>
+            <br />
+            <span className="gradient-text inline-block scroll-reveal-right stagger-2">
+              {` ${hero.titleHighlight}`}
+            </span>
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto text-muted-foreground text-spacing scroll-reveal-scale stagger-3 leading-relaxed body-vietnamese">
-          Được thành lập với tầm nhìn trở thành hệ sinh thái đa ngành với giá trị cốt lõi Tâm - Tầm - Đức. Với mục tiêu kiến tạo những giá trị bền vững cho cộng đồng và xã hội.
+          <p className="body-vietnamese mx-auto max-w-4xl text-lg leading-relaxed text-muted-foreground scroll-reveal-scale stagger-3 md:text-xl lg:text-2xl">
+            {hero.description}
           </p>
           <div className="scroll-reveal-rotate stagger-4">
-            <button 
-              onClick={() => scrollToSection('ecosystem')}
-              className="bg-primary text-primary-foreground font-semibold px-8 py-4 lg:px-10 lg:py-5 rounded-full hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 active:scale-95 hover-shimmer relative overflow-hidden group text-lg vietnamese-text"
+            <button
+              onClick={() => scrollToSection("ecosystem")}
+              className="vietnamese-text relative overflow-hidden rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition-all duration-300 hover:scale-105 hover:opacity-90 hover:shadow-lg hover:shadow-primary/25 hover-shimmer active:scale-95 lg:px-10 lg:py-5"
             >
-              <span className="relative z-10">Khám Phá Hệ Sinh Thái</span>
+              <span className="relative z-10">{hero.cta}</span>
             </button>
           </div>
         </div>
