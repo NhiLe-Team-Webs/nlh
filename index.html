@@ -370,7 +370,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <button type="button" class="lang-opt is-active" data-lang="en">EN</button>
         <button type="button" class="lang-opt" data-lang="vi">VI</button>
       </div>
-      <a class="btn btn-gold" href="mailto:contact@nhi.sg" data-en="Partner with us" data-vi="Đồng hành cùng chúng tôi">Partner with us</a>
+      <a id="partnerBtn" class="btn btn-gold" target="_blank" rel="noopener" href="mailto:contact@nhi.sg" data-en="Partner with us" data-vi="Đồng hành cùng chúng tôi">Partner with us</a>
     </div>
   </div>
 </header>
@@ -728,6 +728,31 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
               brands:[{name:'Family Cloud', url:'https://familycloud.nhi.sg/', desc:{en:'A cloud technology and digital infrastructure platform — built for the future.', vi:'Nền tảng công nghệ đám mây và hạ tầng số — kiến tạo cho tương lai.'}}] }
   };
 
+  /* ---------- nội dung email "Partner with us" (song ngữ) ---------- */
+  var PARTNER_EMAIL = 'contact@nhi.sg';
+  var PARTNER = {
+    en: {
+      su: 'Partnership with NhiLe Holding',
+      body: 'Hello NhiLe Holding team,\n\n'
+          + "I'd love to explore partnering with you. A little about me/us:\n\n"
+          + '• Name:\n'
+          + '• Organization:\n'
+          + '• What we have in mind:\n\n'
+          + 'Looking forward to connecting.\n\n'
+          + 'Warm regards,'
+    },
+    vi: {
+      su: 'Đồng hành cùng NhiLe Holding',
+      body: 'Kính gửi đội ngũ NhiLe Holding,\n\n'
+          + 'Tôi rất mong được đồng hành cùng NhiLe Holding. Đôi nét về tôi/chúng tôi:\n\n'
+          + '• Tên:\n'
+          + '• Tổ chức:\n'
+          + '• Mong muốn hợp tác:\n\n'
+          + 'Rất mong được kết nối.\n\n'
+          + 'Trân trọng,'
+    }
+  };
+
   var nodes = document.querySelectorAll('.node');
   var panel = document.getElementById('ecoPanel');
   var pSwatch = document.getElementById('panelSwatch');
@@ -894,6 +919,16 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     }
     renderActive();        /* dịch lại panel hệ sinh thái */
     renderNumsSuffix();    /* dịch lại hậu tố số liệu */
+
+    /* nút "Partner with us": mở Gmail compose với tiêu đề + nội dung theo ngôn ngữ */
+    var partnerBtn = document.getElementById('partnerBtn');
+    if(partnerBtn){
+      var p = PARTNER[lang] || PARTNER.en;
+      partnerBtn.href = 'https://mail.google.com/mail/?view=cm&fs=1'
+        + '&to=' + encodeURIComponent(PARTNER_EMAIL)
+        + '&su=' + encodeURIComponent(p.su)
+        + '&body=' + encodeURIComponent(p.body);
+    }
   }
   var langOpts = document.querySelectorAll('.lang-opt');
   for(var lo=0; lo<langOpts.length; lo++){
