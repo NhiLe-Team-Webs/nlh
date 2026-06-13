@@ -1,5 +1,4 @@
-import React from "react"
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormField,
@@ -7,20 +6,30 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "./ui/form"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { Textarea } from "./ui/textarea"
+} from "./ui/form";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Textarea } from "./ui/textarea";
+import { useTranslation } from "@/contexts/LanguageContext";
 
 type ContactFormValues = {
-  name: string
-  company?: string
-  purpose: string
-  email: string
-  telegram?: string
-}
+  name: string;
+  company?: string;
+  purpose: string;
+  email: string;
+  telegram?: string;
+};
 
-export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactFormValues) => void }) {
+type ContactFormProps = {
+  onSubmit: (data: ContactFormValues) => void;
+};
+
+const ContactForm = ({ onSubmit }: ContactFormProps) => {
+  const translation = useTranslation();
+  const {
+    contactForm: { fields, submit },
+  } = translation;
+
   const form = useForm<ContactFormValues>({
     defaultValues: {
       name: "",
@@ -29,7 +38,7 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
       email: "",
       telegram: "",
     },
-  })
+  });
 
   return (
     <Form {...form}>
@@ -37,12 +46,12 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
         <FormField
           control={form.control}
           name="name"
-          rules={{ required: "Vui lòng nhập tên của bạn" }}
+          rules={{ required: fields.name.required }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tên của bạn</FormLabel>
+              <FormLabel>{fields.name.label}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Nhập tên của bạn" />
+                <Input {...field} placeholder={fields.name.placeholder} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -53,9 +62,9 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
           name="company"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tên công ty (nếu có)</FormLabel>
+              <FormLabel>{fields.company.label}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Nhập tên công ty" />
+                <Input {...field} placeholder={fields.company.placeholder} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -64,12 +73,12 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
         <FormField
           control={form.control}
           name="purpose"
-          rules={{ required: "Vui lòng nhập mục đích liên hệ" }}
+          rules={{ required: fields.purpose.required }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mục đích liên hệ</FormLabel>
+              <FormLabel>{fields.purpose.label}</FormLabel>
               <FormControl>
-                <Textarea {...field} placeholder="Nhập mục đích liên hệ" />
+                <Textarea {...field} placeholder={fields.purpose.placeholder} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,17 +88,17 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
           control={form.control}
           name="email"
           rules={{
-            required: "Vui lòng nhập email",
+            required: fields.email.required,
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Email không hợp lệ",
+              message: fields.email.pattern,
             },
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{fields.email.label}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Nhập email" />
+                <Input {...field} placeholder={fields.email.placeholder} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,18 +109,23 @@ export default function ContactForm({ onSubmit }: { onSubmit: (data: ContactForm
           name="telegram"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Telegram (nếu có)</FormLabel>
+              <FormLabel>{fields.telegram.label}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Nhập telegram" />
+                <Input {...field} placeholder={fields.telegram.placeholder} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-red-500 text-white hover:bg-red-600">
-          Gửi
+        <Button
+          type="submit"
+          className="w-full bg-red-500 text-white transition-colors duration-300 hover:bg-red-600"
+        >
+          {submit}
         </Button>
       </form>
     </Form>
-  )
-}
+  );
+};
+
+export default ContactForm;
